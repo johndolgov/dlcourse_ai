@@ -19,7 +19,7 @@ def check_gradient(f, x, delta=1e-5, tol=1e-4):
     assert x.dtype == np.float
 
     fx, analytic_grad = f(x)
-    analytic_grad = analytic_grad.copy()
+    #print(analytic_grad)
 
     assert analytic_grad.shape == x.shape
 
@@ -28,15 +28,18 @@ def check_gradient(f, x, delta=1e-5, tol=1e-4):
         ix = it.multi_index
         analytic_grad_at_ix = analytic_grad[ix]
         numeric_grad_at_ix = 0
-
-        # TODO Copy from previous assignment
-        raise Exception("Not implemented!")
+        orig_x = x.copy()
+        orig_x[ix] -=  delta
+        f_1 = f(orig_x)
+        orig_x[ix] += 2*delta
+        f_2 = f(orig_x)
+        orig_x[ix] -= delta
+        numeric_grad_at_ix = (f_2[0] - f_1[0])/(2*delta)
 
         if not np.isclose(numeric_grad_at_ix, analytic_grad_at_ix, tol):
             print("Gradients are different at %s. Analytic: %2.5f, Numeric: %2.5f" % (
                   ix, analytic_grad_at_ix, numeric_grad_at_ix))
             return False
-
         it.iternext()
 
     print("Gradient check passed!")

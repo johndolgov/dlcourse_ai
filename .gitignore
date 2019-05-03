@@ -1,1 +1,11 @@
 .DS_Store
+*.zip
+*.mat
+data/
+seminars/
+__pycache__/
+test_kaggle/
+train_kaggle/
+__MACOSX/
+stafordSentimentTreebank/
+
