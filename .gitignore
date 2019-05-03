@@ -8,4 +8,4 @@ test_kaggle/
 train_kaggle/
 __MACOSX/
 stafordSentimentTreebank/
-
+*.txt
