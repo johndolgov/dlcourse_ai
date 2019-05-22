@@ -9,3 +9,8 @@ train_kaggle/
 __MACOSX/
 stafordSentimentTreebank/
 *.txt
+*.pdf
+*.png
+MNIST/
+venv/
+course_project/
